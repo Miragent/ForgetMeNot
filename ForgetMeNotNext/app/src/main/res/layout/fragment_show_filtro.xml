@@ -1,0 +1,44 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.zerostar.forgetmenotnext.fragments.ShowFiltro"
+    android:orientation="vertical">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <CheckBox
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Pianta Aromatica"
+        android:id="@+id/cb_aromatica"
+        android:layout_weight="2" />
+
+    <CheckBox
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Pianta Carnivora"
+        android:id="@+id/cb_carnivora"
+        android:layout_weight="2" />
+
+    <CheckBox
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Pianta Grassa"
+        android:id="@+id/cb_grassa"
+        android:layout_weight="2" />
+
+    <CheckBox
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Pianta Ornamentale"
+        android:id="@+id/cb_ornamentale"
+        android:layout_weight="2" />
+
+    <CheckBox
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Pokemon Erba/Veleno"
+        android:id="@+id/cb_pokemon"
+        android:layout_weight="2" />
+
+</LinearLayout>
