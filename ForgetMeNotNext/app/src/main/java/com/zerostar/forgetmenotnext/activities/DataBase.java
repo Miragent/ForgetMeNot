@@ -1,9 +1,11 @@
 package com.zerostar.forgetmenotnext.activities;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.DialogFragment;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
@@ -12,17 +14,19 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseQueryAdapter;
 import com.zerostar.forgetmenotnext.R;
-import com.zerostar.forgetmenotnext.fragments.ShowFiltro;
-
 
 public class DataBase extends Activity {
+
+    static final int FILTER_ID = 1;
+
 
     private ParseQueryAdapter<ParseObject> mainAdapter;
     private ListView lista_piante;
     private EditText txt_nome_pianta;
     private ImageButton btn_cercaDB;
+    private ImageButton btn_query_opt;
     private String nome_pianta;
-    private String filtro_tipo;
+    private String filtro_tipo = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,8 +40,23 @@ public class DataBase extends Activity {
         lista_piante = (ListView) findViewById(R.id.lista_piante);
         txt_nome_pianta = (EditText) findViewById(R.id.txt_cercaPianta);
         btn_cercaDB = (ImageButton) findViewById(R.id.btn_cercaDB);
+        btn_query_opt = (ImageButton)findViewById(R.id.btn_query_opt);
 
         setQueryAdapter();
+
+        //setup the listeners
+
+        lista_piante.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                ParseObject entry = (ParseObject) parent.getItemAtPosition(position);
+                String id_pianta = entry.getObjectId();
+                Log.d("Loggerello:", id_pianta);
+                Intent i_visualizza_pianta = new Intent(DataBase.this,VisualizzaPianta.class);
+                i_visualizza_pianta.putExtra("id",id_pianta);
+                startActivity(i_visualizza_pianta);
+            }
+        });
 
         btn_cercaDB.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,13 +64,35 @@ public class DataBase extends Activity {
                 setQueryAdapter();
             }
         });
+        btn_query_opt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i_show_filtri = new Intent(DataBase.this, ShowFiltro.class);
+                startActivityForResult(i_show_filtri, FILTER_ID);
+            }
+        });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        if (requestCode == FILTER_ID) {
+            if(resultCode == Activity.RESULT_OK){
+                filtro_tipo = data.getStringExtra("result");
+            }
+            if (resultCode == Activity.RESULT_CANCELED) {
+                filtro_tipo = "";
+            }
+        }
+
     }
 
     private void setQueryAdapter(){
         nome_pianta = txt_nome_pianta.getText().toString();
         mainAdapter = new ParseQueryAdapter<ParseObject>(DataBase.this, new ParseQueryAdapter.QueryFactory<ParseObject>() {
             public ParseQuery<ParseObject> create() {
-                // Here we can configure a ParseQuery to our heart's desire.
+
+            // Here we can configure a ParseQuery to our heart's desire.
                 ParseQuery query = new ParseQuery("Plants");
                 query.whereStartsWith("Nome", nome_pianta);
                 if(!filtro_tipo.equals("")) {
@@ -60,13 +101,10 @@ public class DataBase extends Activity {
                 return query;
             }
         });
+
         mainAdapter.setTextKey("Nome");
         mainAdapter.setImageKey("Immagine");
         lista_piante.setAdapter(mainAdapter);
         return;
-    }
-
-    public void setFiltro_tipo(String stringa){
-        filtro_tipo = stringa;
     }
 }

@@ -21,7 +21,7 @@ public class ForgetMeNot extends Activity {
 
 
                 //ATTENZIONE CAMBIARE MAIN SCREEN.CLASS CON LOGINSIGNUP.CLASS!!!!!!
-                Intent goto_login_screen = new Intent(ForgetMeNot.this, MainScreen.class);
+                Intent goto_login_screen = new Intent(ForgetMeNot.this, LoginSignup.class);
                 startActivity(goto_login_screen);
 
             }

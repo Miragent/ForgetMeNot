@@ -1,144 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.zerostar.forgetmenotnext.activities.NuovaPianta">
+    android:fillViewport="true">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/scrollView" >
-
-        <LinearLayout
+        <RelativeLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="128dp"
-                android:id="@+id/l_foto_nome"
-                android:layout_weight="1">
+            <ImageButton
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:id="@+id/btn_foto_pianta"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="64dp"
+                android:layout_marginTop="64dp" />
 
-                <ImageButton
-                    android:layout_width="128dp"
-                    android:layout_height="match_parent"
-                    android:id="@+id/btn_foto_pianta"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_marginLeft="64dp" />
+            <EditText
+                android:layout_width="160dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/txt_nome_pianta"
+                android:hint="Nome pianta"
+                android:layout_alignTop="@+id/btn_foto_pianta"
+                android:layout_toEndOf="@+id/btn_foto_pianta"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="24dp" />
 
-                <EditText
-                    android:layout_width="128dp"
-                    android:layout_height="match_parent"
-                    android:id="@+id/txt_nome_pianta"
-                    android:layout_alignParentTop="true"
-                    android:layout_toEndOf="@+id/btn_foto_pianta"
-                    android:hint="Inserisci nome pianta" />
-            </RelativeLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Dove"
+                android:id="@+id/label_dove"
+                android:layout_below="@+id/btn_foto_pianta"
+                android:layout_alignStart="@+id/btn_foto_pianta"
+                android:layout_marginTop="64dp" />
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="128dp"
-                android:id="@+id/l_riconosci"
-                android:layout_weight="1">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Luce"
+                android:id="@+id/label_luce"
+                android:layout_below="@+id/label_dove"
+                android:layout_alignStart="@+id/label_dove"
+                android:layout_marginTop="64dp" />
 
-                <ImageButton
-                    android:layout_width="128dp"
-                    android:layout_height="match_parent"
-                    android:text="New Button"
-                    android:id="@+id/btn_cerca"
-                    android:layout_marginLeft="64dp" />
+            <ImageButton
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:id="@+id/btn_luce"
+                android:layout_marginLeft="16dp"
+                android:layout_alignBottom="@+id/label_posto"
+                android:layout_toEndOf="@+id/label_posto" />
 
-                <EditText
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/txt_ricerca"
-                    android:hint="Cerca nel database"
-                    android:layout_centerVertical="true"
-                    android:layout_toEndOf="@+id/btn_cerca" />
+            <TextView
+                android:layout_width="128dp"
+                android:layout_height="wrap_content"
+                android:text="Trova un posto adatto alla tua pianta"
+                android:id="@+id/label_posto"
+                android:textAlignment="center"
+                android:textStyle="bold"
+                android:layout_below="@+id/label_luce"
+                android:layout_alignStart="@+id/label_luce"
+                android:layout_marginTop="24dp"
+                android:layout_marginLeft="16dp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="Specie"
-                    android:id="@+id/label_specie"
-                    android:layout_marginLeft="16dp" />
-            </RelativeLayout>
+            <ImageButton
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:id="@+id/btn_fatto"
+                android:layout_below="@+id/label_fatto"
+                android:layout_centerHorizontal="true"/>
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="128dp"
-                android:id="@+id/l_posizione"
-                android:layout_weight="1">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Fatto!"
+                android:id="@+id/label_fatto"
+                android:layout_below="@+id/label_posto"
+                android:layout_alignStart="@+id/label_luce"
+                android:layout_marginTop="64dp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="Dove"
-                    android:id="@+id/label_dove"
-                    android:layout_marginLeft="16dp" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="128dp"
-                android:id="@+id/l_luce"
-                android:layout_weight="1">
-
-                <ImageButton
-                    android:layout_width="128dp"
-                    android:layout_height="match_parent"
-                    android:id="@+id/btn_luce"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginRight="64dp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="Luce"
-                    android:id="@+id/label_luce"
-                    android:layout_marginLeft="16dp" />
-
-                <TextView
-                    android:layout_width="128dp"
-                    android:layout_height="wrap_content"
-                    android:text="Trova un posto adatto alla tua pianta"
-                    android:id="@+id/textView"
-                    android:layout_centerVertical="true"
-                    android:layout_toStartOf="@+id/btn_luce"
-                    android:textAlignment="center"
-                    android:textStyle="bold" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="128dp"
-                android:id="@+id/l_fatto"
-                android:layout_weight="1">
-
-                <ImageButton
-                    android:layout_width="128dp"
-                    android:layout_height="match_parent"
-                    android:id="@+id/btn_fatto"
-                    android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="Fatto!"
-                    android:id="@+id/label_fatto"
-                    android:layout_marginLeft="16dp" />
-            </RelativeLayout>
-
-        </LinearLayout>
+        </RelativeLayout>
     </ScrollView>
-
-</FrameLayout>

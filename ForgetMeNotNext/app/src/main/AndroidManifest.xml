@@ -4,6 +4,11 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-feature android:name="android.hardware.camera" />
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:name=".application.ForgetMeNot"
@@ -32,6 +37,14 @@
         <activity android:name=".activities.LoginSignup" >
         </activity>
         <activity android:name=".activities.Signup" >
+        </activity>
+        <activity
+            android:name=".activities.ShowFiltro"
+            android:theme="@android:style/Theme.Holo.Dialog.NoActionBar" >
+        </activity>
+        <activity android:name=".activities.VisualizzaPianta" >
+        </activity>
+        <activity android:name=".activities.VisualizzaMyPianta" >
         </activity>
     </application>
 

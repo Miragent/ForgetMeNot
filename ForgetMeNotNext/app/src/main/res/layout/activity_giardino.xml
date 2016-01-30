@@ -9,13 +9,8 @@
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/listaPiante"
+        android:id="@+id/lista_my_piante"
         android:layout_weight=".6"
         android:headerDividersEnabled="false" />
 
-    <ImageButton
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/btn_nuova_pianta"
-        android:layout_weight="1" />
 </LinearLayout>
