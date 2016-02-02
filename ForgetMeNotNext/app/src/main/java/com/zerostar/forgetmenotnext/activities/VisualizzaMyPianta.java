@@ -48,6 +48,7 @@ public class VisualizzaMyPianta extends Activity {
     private ProgressBar bar_terra;
     private TextView l_terra;
     private TextView l_info_terra;
+    private TextView l_cosa_usare;
     private TextView l_info_my_pianta;
 
 
@@ -103,11 +104,11 @@ public class VisualizzaMyPianta extends Activity {
             bar_sole = (ProgressBar) v.findViewById(R.id.bar_sole);
             l_sole = (TextView) v.findViewById(R.id.l_sole);
 
-            /*
+
             l_scroll_sole = (TextView) v.findViewById(R.id.l_scroll_sole);
             scroll_sole = (ScrollView) v.findViewById(R.id.scroll_sole);
             txt_info_sole = (TextView) v.findViewById(R.id.txt_info_sole);
-            */
+
 
             btn_goccia = (ImageButton) v.findViewById(R.id.btn_goccia);
             bar_goccia = (ProgressBar) v.findViewById(R.id.bar_goccia);
@@ -119,7 +120,8 @@ public class VisualizzaMyPianta extends Activity {
             btn_terra = (ImageButton) v.findViewById(R.id.btn_terra);
             bar_terra = (ProgressBar) v.findViewById(R.id.bar_terra);
             l_terra = (TextView) v.findViewById(R.id.l_terra);
-            l_info_terra= (TextView) v.findViewById(R.id.l_info_terra);
+            l_info_terra = (TextView) v.findViewById(R.id.l_info_terra);
+            l_cosa_usare = (TextView) v.findViewById(R.id.l_cosa_usare);
 
             l_info_my_pianta= (TextView) v.findViewById(R.id.l_my_descrizione);
 
@@ -150,6 +152,7 @@ public class VisualizzaMyPianta extends Activity {
 
             String meteo = "Oggi c'è il sole!";
             l_sole.setText(meteo);
+            l_scroll_sole.setText("Il meteo di oggi:");
 
             String acqua = "Perfetto!";
             l_goccia.setText(acqua);
@@ -161,6 +164,8 @@ public class VisualizzaMyPianta extends Activity {
             String terra = "Fertilizzare tra un mese";
             l_terra.setText(terra);
             l_info_terra.setText("Cosa usare?");
+            String info_terra = plant_pointer.getString("Tipofertil");
+            l_cosa_usare.setText(info_terra);
 
             String descrizione = plant_pointer.getString("Descrizione");
             l_info_my_pianta.setText(descrizione);

@@ -34,8 +34,9 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Medium Text"
         android:id="@+id/l_my_descrizione"
-        android:layout_below="@+id/l_info_terra"
-        android:layout_alignStart="@+id/l_info_terra" />
+        android:layout_below="@+id/l_cosa_usare"
+        android:layout_alignStart="@+id/l_info_terra"
+        android:layout_marginTop="64dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -203,6 +204,15 @@
         android:layout_below="@+id/btn_terra"
         android:layout_alignParentStart="true"
         android:layout_marginTop="28dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Medium Text"
+        android:id="@+id/l_cosa_usare"
+        android:layout_below="@+id/l_info_terra"
+        android:layout_alignStart="@+id/l_info_terra" />
 
 </RelativeLayout>
 </ScrollView>
