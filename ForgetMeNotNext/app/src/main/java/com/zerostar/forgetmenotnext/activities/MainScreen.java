@@ -3,10 +3,18 @@ package com.zerostar.forgetmenotnext.activities;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 
+import com.parse.FunctionCallback;
+import com.parse.ParseCloud;
+import com.parse.ParseException;
+import com.parse.ParseInstallation;
+import com.parse.ParseUser;
 import com.zerostar.forgetmenotnext.R;
+
+import java.util.HashMap;
 
 public class MainScreen extends Activity {
 
@@ -21,6 +29,12 @@ public class MainScreen extends Activity {
         ImageButton btn_giardino = (ImageButton) findViewById(R.id.btn_giardino);
         ImageButton btn_DB = (ImageButton) findViewById(R.id.btn_DB);
 
+        ParseUser me = ParseUser.getCurrentUser();
+        ParseInstallation pi = ParseInstallation.getCurrentInstallation();
+        pi.put("userId",me.getObjectId());
+        pi.saveInBackground();
+
+
         btn_giardino.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 startActivity(i_giardino);
@@ -32,6 +46,18 @@ public class MainScreen extends Activity {
                 startActivity(i_DB);
             }
         });
+
+        //CHECK PARSE CLOUD
+        // Android SDK
+        ParseCloud.callFunctionInBackground("hello", new HashMap<String, Object>(), new FunctionCallback<String>() {
+            public void done(String result, ParseException e) {
+                if (e == null) {
+                    Log.d("Ciao sono il cloud:",result);
+                }
+            }
+        });
+
+
     }
 
 }

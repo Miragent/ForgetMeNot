@@ -13,6 +13,7 @@ import android.widget.ListView;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseQueryAdapter;
+import com.parse.ParseUser;
 import com.zerostar.forgetmenotnext.R;
 
 public class Giardino extends Activity {
@@ -57,6 +58,7 @@ public class Giardino extends Activity {
                 // Here we can configure a ParseQuery to our heart's desire.
                 ParseQuery query = new ParseQuery("MyPianta");
                 // CHECK IF THE CURRENT USER HAS PLANTS
+                query.whereEqualTo("createdBy", ParseUser.getCurrentUser());
                 query.whereStartsWith("Nickname", "");
                 return query;
             }

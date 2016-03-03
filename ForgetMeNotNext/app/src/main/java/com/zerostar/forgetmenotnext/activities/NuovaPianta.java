@@ -15,6 +15,9 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.parse.FunctionCallback;
+import com.parse.Parse;
+import com.parse.ParseCloud;
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseGeoPoint;
@@ -24,6 +27,9 @@ import com.parse.ParseUser;
 import com.zerostar.forgetmenotnext.R;
 
 import java.io.ByteArrayOutputStream;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
 
 public class NuovaPianta extends Activity {
 
@@ -122,8 +128,32 @@ public class NuovaPianta extends Activity {
 
                 //Che Pianta è?
                 Intent i_goto_giardino = new Intent(NuovaPianta.this, Giardino.class);
-                my_pianta.put("Info",plant_type);
+                my_pianta.put("Info", plant_type);
                 my_pianta.saveInBackground();
+
+
+                //Set the initial notify
+                HashMap<String, Object> params = new HashMap<String, Object>();
+                ParseUser current_user = ParseUser.getCurrentUser();
+                Calendar c = Calendar.getInstance();
+               // c.add(Calendar.DATE,30);
+                Date schedule_time = c.getTime();
+
+
+                params.put("userID", current_user.getObjectId());
+                params.put("plantNick", my_nome);
+                params.put("scheduleTime", schedule_time);
+                ParseCloud.callFunctionInBackground("schedule", params, new FunctionCallback<Object>() {
+                    @Override
+                    public void done(Object object, ParseException e) {
+                        if (e == null) {
+                            Log.d("Ciao sono il cloud:", object.toString());
+                        }
+                    }
+                });
+
+
+                // Go to giardino
                 startActivity(i_goto_giardino);
             }
         });
