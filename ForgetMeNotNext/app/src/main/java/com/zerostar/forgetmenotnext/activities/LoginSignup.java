@@ -1,7 +1,10 @@
 package com.zerostar.forgetmenotnext.activities;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -12,7 +15,6 @@ import android.widget.Toast;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseUser;
-import com.parse.SignUpCallback;
 import com.zerostar.forgetmenotnext.R;
 
 public class LoginSignup extends Activity {
@@ -24,7 +26,9 @@ public class LoginSignup extends Activity {
     EditText password;
     EditText username;
 
-    /** Called when the activity is first created. */
+    /**
+     * Called when the activity is first created.
+     */
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // Get the view from main.xml
@@ -36,6 +40,7 @@ public class LoginSignup extends Activity {
         // Locate Buttons in main.xml
         loginbutton = (Button) findViewById(R.id.btn_login);
         signup = (Button) findViewById(R.id.btn_signup);
+
 
         // Login Button Click Listener
         loginbutton.setOnClickListener(new OnClickListener() {
@@ -70,6 +75,7 @@ public class LoginSignup extends Activity {
                         });
             }
         });
+
         // Sign up Button Click Listener
         signup.setOnClickListener(new OnClickListener() {
 
@@ -80,6 +86,14 @@ public class LoginSignup extends Activity {
                 startActivity(i_signup);
             }
         });
+    }
 
+    private boolean isConnected() {
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo ni = cm.getActiveNetworkInfo();
+        if (ni == null) {
+            return false;
+        } else
+            return true;
     }
 }
