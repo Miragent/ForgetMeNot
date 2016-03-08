@@ -9,11 +9,13 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseQueryAdapter;
 import com.zerostar.forgetmenotnext.R;
+import com.zerostar.forgetmenotnext.utils.Util;
 
 public class DataBase extends Activity {
 
@@ -27,6 +29,7 @@ public class DataBase extends Activity {
     private ImageButton btn_query_opt;
     private String nome_pianta;
     private String filtro_tipo = "";
+    private Util util;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +40,15 @@ public class DataBase extends Activity {
     @Override
     public void onResume(){
         super.onResume();
+
+        util = new Util(this);
+        if(!util.isConnected()){
+            Toast.makeText(
+                    getApplicationContext(),
+                    "Connessione a internet assente",
+                    Toast.LENGTH_LONG).show();
+        }
+
         lista_piante = (ListView) findViewById(R.id.lista_piante);
         txt_nome_pianta = (EditText) findViewById(R.id.txt_cercaPianta);
         btn_cercaDB = (ImageButton) findViewById(R.id.btn_cercaDB);
@@ -49,6 +61,14 @@ public class DataBase extends Activity {
         lista_piante.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                util = new Util(DataBase.this);
+                if(!util.isConnected()){
+                    Toast.makeText(
+                            getApplicationContext(),
+                            "Connessione a internet assente",
+                            Toast.LENGTH_LONG).show();
+                    return;
+                }
                 ParseObject entry = (ParseObject) parent.getItemAtPosition(position);
                 String id_pianta = entry.getObjectId();
                 Log.d("Loggerello:", id_pianta);

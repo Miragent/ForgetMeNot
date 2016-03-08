@@ -9,18 +9,20 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseQueryAdapter;
 import com.parse.ParseUser;
 import com.zerostar.forgetmenotnext.R;
+import com.zerostar.forgetmenotnext.utils.Util;
 
 public class Giardino extends Activity {
 
     private ParseQueryAdapter<ParseObject> mainAdapter;
     private ListView lista_my_piante;
-
+    private Util util;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +33,15 @@ public class Giardino extends Activity {
     @Override
     public void onResume(){
         super.onResume();
+
+        util = new Util(this);
+        if(!util.isConnected()){
+            Toast.makeText(
+                    getApplicationContext(),
+                    "Connessione a internet assente",
+                    Toast.LENGTH_LONG).show();
+        }
+
         lista_my_piante = (ListView) findViewById(R.id.lista_my_piante);
 
         //set the query
@@ -41,6 +52,14 @@ public class Giardino extends Activity {
         lista_my_piante.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                util = new Util(Giardino.this);
+                if(!util.isConnected()){
+                    Toast.makeText(
+                            getApplicationContext(),
+                            "Connessione a internet assente",
+                            Toast.LENGTH_LONG).show();
+                    return;
+                }
                 ParseObject entry = (ParseObject) parent.getItemAtPosition(position);
                 Intent i_visualizza_my_pianta = new Intent(Giardino.this,VisualizzaMyPianta.class);
                 String id_my_pianta = entry.getObjectId();

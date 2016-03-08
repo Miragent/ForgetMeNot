@@ -25,6 +25,7 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.zerostar.forgetmenotnext.R;
+import com.zerostar.forgetmenotnext.utils.Util;
 
 import java.io.ByteArrayOutputStream;
 import java.util.Calendar;
@@ -45,6 +46,7 @@ public class NuovaPianta extends Activity {
     private EditText txt_my_nome;
     private final static int CAMERA_REQUEST_CODE = 100;
     private final static int LUCE_REQUEST_CODE = 300;
+    private Util util;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,6 +98,15 @@ public class NuovaPianta extends Activity {
         btn_fatto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                util = new Util(NuovaPianta.this);
+                if(!util.isConnected()){
+                    Toast.makeText(
+                            getApplicationContext(),
+                            "Connessione a internet assente",
+                            Toast.LENGTH_LONG).show();
+                    return;
+                }
 
                 ParseObject my_pianta = new ParseObject("MyPianta");
 

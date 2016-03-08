@@ -1,10 +1,7 @@
 package com.zerostar.forgetmenotnext.activities;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -16,6 +13,7 @@ import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 import com.zerostar.forgetmenotnext.R;
+import com.zerostar.forgetmenotnext.utils.Util;
 
 public class LoginSignup extends Activity {
     // Declare Variables
@@ -25,6 +23,8 @@ public class LoginSignup extends Activity {
     String passwordtxt;
     EditText password;
     EditText username;
+
+    private Util util;
 
     /**
      * Called when the activity is first created.
@@ -46,6 +46,15 @@ public class LoginSignup extends Activity {
         loginbutton.setOnClickListener(new OnClickListener() {
 
             public void onClick(View arg0) {
+
+                util = new Util(LoginSignup.this);
+                if(!util.isConnected()){
+                    Toast.makeText(
+                            getApplicationContext(),
+                            "Connessione a internet assente",
+                            Toast.LENGTH_LONG).show();
+                    return;
+                }
                 // Retrieve the text entered from the EditText
                 usernametxt = username.getText().toString();
                 passwordtxt = password.getText().toString();
@@ -80,20 +89,19 @@ public class LoginSignup extends Activity {
         signup.setOnClickListener(new OnClickListener() {
 
             public void onClick(View arg0) {
+                util = new Util(LoginSignup.this);
+                if(!util.isConnected()){
+                    Toast.makeText(
+                            getApplicationContext(),
+                            "Connessione a internet assente",
+                            Toast.LENGTH_LONG).show();
+                    return;
+                }
                 Intent i_signup = new Intent(
                         LoginSignup.this,
                         Signup.class);
                 startActivity(i_signup);
             }
         });
-    }
-
-    private boolean isConnected() {
-        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo ni = cm.getActiveNetworkInfo();
-        if (ni == null) {
-            return false;
-        } else
-            return true;
     }
 }

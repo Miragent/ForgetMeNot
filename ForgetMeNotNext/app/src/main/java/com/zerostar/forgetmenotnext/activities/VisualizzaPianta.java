@@ -9,12 +9,14 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.parse.ParseImageView;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseQueryAdapter;
 import com.zerostar.forgetmenotnext.R;
+import com.zerostar.forgetmenotnext.utils.Util;
 
 public class VisualizzaPianta extends Activity {
 
@@ -30,6 +32,8 @@ public class VisualizzaPianta extends Activity {
     private ImageButton btn_aggiungi;
 
     private ListView lista_show;
+
+    private Util util;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +62,14 @@ public class VisualizzaPianta extends Activity {
         btn_aggiungi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                util = new Util(VisualizzaPianta.this);
+                if(!util.isConnected()){
+                    Toast.makeText(
+                            getApplicationContext(),
+                            "Connessione a internet assente",
+                            Toast.LENGTH_LONG).show();
+                    return;
+                }
                 Intent i_aggiungi_pianta = new Intent(VisualizzaPianta.this,NuovaPianta.class);
                 i_aggiungi_pianta.putExtra("idPianta",id);
                 startActivity(i_aggiungi_pianta);

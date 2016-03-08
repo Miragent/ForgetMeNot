@@ -13,6 +13,7 @@ import com.parse.ParseException;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;
 import com.zerostar.forgetmenotnext.R;
+import com.zerostar.forgetmenotnext.utils.Util;
 
 public class Signup extends Activity {
 
@@ -23,6 +24,8 @@ public class Signup extends Activity {
     EditText password;
     EditText username;
     EditText mail;
+
+    private Util util;
 
     /** Called when the activity is first created. */
     public void onCreate(Bundle savedInstanceState) {
@@ -42,6 +45,15 @@ public class Signup extends Activity {
         signup.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View arg0) {
+
+                util = new Util(Signup.this);
+                if(!util.isConnected()){
+                    Toast.makeText(
+                            getApplicationContext(),
+                            "Connessione a internet assente",
+                            Toast.LENGTH_LONG).show();
+                    return;
+                }
                 // Retrieve the text entered from the EditText
                 usernametxt = username.getText().toString();
                 passwordtxt = password.getText().toString();
