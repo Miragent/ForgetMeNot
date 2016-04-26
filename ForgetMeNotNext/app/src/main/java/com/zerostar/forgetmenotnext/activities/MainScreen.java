@@ -18,6 +18,8 @@ import java.util.HashMap;
 
 public class MainScreen extends Activity {
 
+    private ParseUser me;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,13 +27,15 @@ public class MainScreen extends Activity {
 
         final Intent i_giardino = new Intent(this, Giardino.class);
         final Intent i_DB = new Intent(this, DataBase.class);
+        final Intent i_lo = new Intent(this, LoginSignup.class);
 
         ImageButton btn_giardino = (ImageButton) findViewById(R.id.btn_giardino);
         ImageButton btn_DB = (ImageButton) findViewById(R.id.btn_DB);
+        ImageButton btn_lo = (ImageButton) findViewById((R.id.btn_logout));
 
-        ParseUser me = ParseUser.getCurrentUser();
+        me = ParseUser.getCurrentUser();
         ParseInstallation pi = ParseInstallation.getCurrentInstallation();
-        pi.put("userId",me.getObjectId());
+        pi.put("userId", me.getObjectId());
         pi.saveInBackground();
 
 
@@ -47,6 +51,13 @@ public class MainScreen extends Activity {
             }
         });
 
+        btn_lo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                me.logOutInBackground();
+                startActivity(i_lo);
+            }
+        });
         //CHECK PARSE CLOUD
         // Android SDK
         ParseCloud.callFunctionInBackground("hello", new HashMap<String, Object>(), new FunctionCallback<String>() {

@@ -5,12 +5,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.parse.ParseImageView;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseQueryAdapter;
@@ -30,6 +33,9 @@ public class DataBase extends Activity {
     private String nome_pianta;
     private String filtro_tipo = "";
     private Util util;
+
+    private ParseImageView img_icon;
+    private TextView l_nome;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,11 +115,12 @@ public class DataBase extends Activity {
 
     private void setQueryAdapter(){
         nome_pianta = txt_nome_pianta.getText().toString();
-        mainAdapter = new ParseQueryAdapter<ParseObject>(DataBase.this, new ParseQueryAdapter.QueryFactory<ParseObject>() {
+        mainAdapter = new MyAdapter(DataBase.this, new ParseQueryAdapter.QueryFactory<ParseObject>() {
             public ParseQuery<ParseObject> create() {
 
             // Here we can configure a ParseQuery to our heart's desire.
                 ParseQuery query = new ParseQuery("Plants");
+
                 query.whereStartsWith("Nome", nome_pianta);
                 if(!filtro_tipo.equals("")) {
                     query.whereEqualTo("Tipo", filtro_tipo);
@@ -122,9 +129,39 @@ public class DataBase extends Activity {
             }
         });
 
-        mainAdapter.setTextKey("Nome");
-        mainAdapter.setImageKey("Immagine");
+
         lista_piante.setAdapter(mainAdapter);
         return;
+    }
+
+    class MyAdapter extends ParseQueryAdapter<ParseObject> {
+        private Activity activity;
+
+        public MyAdapter(Activity act, com.parse.ParseQueryAdapter.QueryFactory<ParseObject> queryFactory) {
+            super(act, queryFactory);
+            this.activity = act;
+            // setPaginationEnabled(false);
+            //setObjectsPerPage(2);
+            setAutoload(true);
+        }
+
+        @Override
+        public View getItemView(ParseObject object, View v, ViewGroup parent) {
+
+            if (v == null) {
+                v = View.inflate(getContext(), R.layout.adapter_show_piante, null);
+            }
+
+            img_icon = (ParseImageView) v.findViewById(R.id.img_icon1);
+            l_nome = (TextView) v.findViewById((R.id.l_text1));
+
+            super.getItemView(object, v, parent);
+
+            img_icon.setParseFile(object.getParseFile("Immagine"));
+            img_icon.loadInBackground();
+            l_nome.setText(object.getString("Nome"));
+
+            return v;
+        }
     }
 }

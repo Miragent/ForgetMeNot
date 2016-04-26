@@ -2,18 +2,19 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.zerostar.forgetmenotnext" >
 
+
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CAMERA" />
 
     <uses-feature android:name="android.hardware.camera" />
 
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
-
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <!--
@@ -22,13 +23,17 @@
     -->
     <!-- <uses-permission android:name="android.permission.GET_ACCOUNTS" /> -->
 
+
     <!--
       IMPORTANT: Change "com.parse.starter.permission.C2D_MESSAGE" in the lines below
       to match your app's package name + ".permission.C2D_MESSAGE".
     -->
-    <permission android:protectionLevel="signature"
-        android:name="com.zerostar.forgetmenotnext.permission.C2D_MESSAGE" />
+    <permission
+        android:name="com.zerostar.forgetmenotnext.permission.C2D_MESSAGE"
+        android:protectionLevel="signature" />
+
     <uses-permission android:name="com.zerostar.forgetmenotnext.permission.C2D_MESSAGE" />
+
 
     <application
         android:name=".application.ForgetMeNot"
@@ -36,7 +41,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@android:style/Theme.Holo" >
+         >
         <activity
             android:name=".activities.ForgetMeNot"
             android:theme="@android:style/Theme.Holo.Light.NoActionBar.Fullscreen" >
@@ -60,7 +65,7 @@
         </activity>
         <activity
             android:name=".activities.ShowFiltro"
-            android:theme="@android:style/Theme.Holo.Dialog.NoActionBar" >
+            android:theme="@android:style/Theme.Holo.Light.Dialog.NoActionBar" >
         </activity>
         <activity android:name=".activities.VisualizzaPianta" >
         </activity>
@@ -68,30 +73,35 @@
         </activity>
         <activity
             android:name=".activities.MenuSensore"
-            android:theme="@android:style/Theme.Holo.Dialog.NoActionBar">
+            android:theme="@android:style/Theme.Holo.Light.Dialog.NoActionBar" >
         </activity>
 
         <service android:name="com.parse.PushService" />
-        <receiver android:name="com.parse.ParsePushBroadcastReceiver"
-            android:exported="false">
+
+        <receiver
+            android:name="com.parse.ParsePushBroadcastReceiver"
+            android:exported="false" >
             <intent-filter>
                 <action android:name="com.parse.push.intent.RECEIVE" />
                 <action android:name="com.parse.push.intent.DELETE" />
                 <action android:name="com.parse.push.intent.OPEN" />
             </intent-filter>
         </receiver>
-        <receiver android:name="com.parse.GcmBroadcastReceiver"
-            android:permission="com.google.android.c2dm.permission.SEND">
+        <receiver
+            android:name="com.parse.GcmBroadcastReceiver"
+            android:permission="com.google.android.c2dm.permission.SEND" >
             <intent-filter>
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
                 <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
 
-                <!--
-                  IMPORTANT: Change "com.parse.starter" to match your app's package name.
-                -->
+<!--                   IMPORTANT: Change "com.parse.starter" to match your app's package name. -->
                 <category android:name="com.zerostar.forgetmenotnext" />
             </intent-filter>
         </receiver>
+
+        <activity android:name=".activities.ShowElimina"
+            android:theme="@android:style/Theme.Holo.Light.Dialog.NoActionBar">
+        </activity>
     </application>
 
 </manifest>

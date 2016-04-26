@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import com.parse.ParseUser;
 import com.zerostar.forgetmenotnext.R;
 import com.zerostar.forgetmenotnext.utils.Util;
 
@@ -24,10 +25,14 @@ public class ForgetMeNot extends Activity {
         h.postDelayed(new Runnable() {
             @Override
             public void run() {
-
                 if (util.isConnected()) {
-                    Intent goto_login_screen = new Intent(ForgetMeNot.this, LoginSignup.class);
-                    startActivity(goto_login_screen);
+                    if(ParseUser.getCurrentUser() == null) {
+                        Intent goto_login_screen = new Intent(ForgetMeNot.this, LoginSignup.class);
+                        startActivity(goto_login_screen);
+                    }else {
+                        Intent goto_main_screen = new Intent(ForgetMeNot.this,MainScreen.class);
+                        startActivity(goto_main_screen);
+                    }
                 } else {
                     Toast.makeText(
                             getApplicationContext(),

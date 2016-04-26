@@ -1,7 +1,9 @@
 <resources>
-    <string name="app_name">ForgetMeNotNext</string>
+    <string name="app_name">Forget Me Not</string>
     <string name="hint_nome_pianta">Nome Pianta</string>
 
 <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="dialog_elimina">Sicuro di voler eliminare questa pianta?</string>
+    <string name="si">SI</string>
+    <string name="no">NO</string>
 </resources>

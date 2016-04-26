@@ -96,8 +96,6 @@ class MyAdapter extends ParseQueryAdapter<ParseObject> {
         }
 
 
-
-
         l_nome_pianta = (TextView) v.findViewById(R.id.l_nick_pianta);
         l_tipo_pianta = (TextView) v.findViewById(R.id.l_tipo_pianta);
         l_descrizione = (TextView) v.findViewById(R.id.l_descrizione);

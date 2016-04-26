@@ -34,7 +34,7 @@ public class ShowFiltro extends DialogFragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_show_filtro, container, false);
+        return inflater.inflate(R.layout.activity_show_filtro, container, false);
     }
 
         @Override

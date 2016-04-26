@@ -17,7 +17,7 @@ public class ForgetMeNot extends Application {
         Parse.initialize(this, "3XIaJoDTJfPMjQNWsxapTUV7N9ZGEGFgsj6P7AoK", "Z3znDA6zNWdFVgZLzgJKlRYHcLEaVKoib66yzV7F");
         ParseInstallation.getCurrentInstallation().saveInBackground();
 
-        ParseUser.enableAutomaticUser();
+        //ParseUser.enableAutomaticUser();
         ParseACL defaultACL = new ParseACL();
 
         // Remove this line if you would like all objects to be private by default
