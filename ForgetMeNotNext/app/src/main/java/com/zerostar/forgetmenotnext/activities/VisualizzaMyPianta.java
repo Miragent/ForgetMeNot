@@ -15,13 +15,20 @@ import android.widget.TextClock;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.parse.FunctionCallback;
 import com.parse.GetCallback;
+import com.parse.ParseCloud;
 import com.parse.ParseException;
 import com.parse.ParseImageView;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseQueryAdapter;
+import com.parse.ParseUser;
 import com.zerostar.forgetmenotnext.R;
+
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
 
 
 public class VisualizzaMyPianta extends Activity {
@@ -82,7 +89,6 @@ public class VisualizzaMyPianta extends Activity {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-
     }
 
     @Override
@@ -174,7 +180,7 @@ public class VisualizzaMyPianta extends Activity {
 
             //Controlla acqua
             if (is_acqua_ok){
-                acqua = "Non c'è bisogno di innaffiare";
+                acqua = "Non c'è bisogno di innaffiare.";
             }
             else{
                 acqua = "Bisogna innaffiare!";
@@ -207,17 +213,53 @@ public class VisualizzaMyPianta extends Activity {
             btn_sole.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent i_controlla_luce = new Intent(VisualizzaMyPianta.this,MenuSensore.class);
-                    i_controlla_luce.putExtra("Esposizione",plant_pointer.getInt("Luce"));
+                    Intent i_controlla_luce = new Intent(VisualizzaMyPianta.this, MenuSensore.class);
+                    i_controlla_luce.putExtra("Esposizione", plant_pointer.getInt("Luce"));
                     startActivityForResult(i_controlla_luce, ESPOSIZIONE_ID);
                 }
             });
+
 
             btn_goccia.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if(!is_acqua_ok){
+                        //IMPOSTARE QUI LE NOTIFICHE
+                        ParseQuery<ParseObject> query = new ParseQuery<>("MyPianta");
+                        query.whereEqualTo("objectId",my_id);
+                        ParseUser current_user = ParseUser.getCurrentUser();
+                        Calendar c;
+                        Date schedule_time;
 
+                        //Notifica acqua
+
+                            int next_acqua = plant_pointer.getInt("Acqua");
+                            c = Calendar.getInstance();
+                            c.add(Calendar.DATE, next_acqua);
+                            schedule_time = c.getTime();
+                            HashMap<String, Object> p_acqua = new HashMap<String, Object>();
+                            p_acqua.put("userID", current_user.getObjectId());
+                            p_acqua.put("plantNick", l_nick.getText());
+                            p_acqua.put("scheduleTime", schedule_time);
+                            p_acqua.put("scheduleText", "Ciao, sono " + l_nick.getText() + ". Ho bisogno di essere innaffiata!");
+                            ParseCloud.callFunctionInBackground("schedule", p_acqua, new FunctionCallback<Object>() {
+                                @Override
+                                public void done(Object object, ParseException e) {
+                                    if (e == null) {
+                                        Log.d("Ciao sono il cloud:", object.toString());
+                                    }
+                                }
+                            });
+
+                        query.getFirstInBackground(new GetCallback<ParseObject>() {
+                            @Override
+                            public void done(ParseObject object, ParseException e) {
+                                object.put("IsLuceOk",true);
+                                is_luce_ok= true;
+                                object.saveInBackground();
+
+                            }
+                        });
                     }
                     else{
                         Toast.makeText(VisualizzaMyPianta.this,"E' presto per innaffiare!",Toast.LENGTH_LONG).show();
@@ -230,7 +272,36 @@ public class VisualizzaMyPianta extends Activity {
                 @Override
                 public void onClick(View v) {
                     if(!is_terra_ok){
+                        //IMPOSTARE QUI LE NOTIFICHE
+                        ParseQuery<ParseObject> query = new ParseQuery<>("MyPianta");
+                        query.whereEqualTo("objectId",my_id);
+                        ParseUser current_user = ParseUser.getCurrentUser();
+                        Calendar c;
+                        Date schedule_time;
 
+                        //Notifica fertilizzante
+
+                            int next_terra = plant_pointer.getInt("Fertilizzante");
+                            if (next_terra != 0) {
+                                //PER DEBUG COMMENTARE LA LINEA SOTTO
+                                c = Calendar.getInstance();
+                                c.add(Calendar.DATE, next_terra);
+                                //
+                                schedule_time = c.getTime();
+                                HashMap<String, Object> p_terra = new HashMap<String, Object>();
+                                p_terra.put("userID", current_user.getObjectId());
+                                p_terra.put("plantNick", l_nick.getText());
+                                p_terra.put("scheduleTime", schedule_time);
+                                p_terra.put("scheduleText", "Ciao, sono " + l_nick.getText() + ". Gradirei del fertilizzante!");
+                                ParseCloud.callFunctionInBackground("schedule", p_terra, new FunctionCallback<Object>() {
+                                    @Override
+                                    public void done(Object object, ParseException e) {
+                                        if (e == null) {
+                                            Log.d("Ciao sono il cloud:", object.toString());
+                                        }
+                                    }
+                                });
+                            }
                     }
                     else {
                         Toast.makeText(VisualizzaMyPianta.this,"Non serve fertilizzare!",Toast.LENGTH_LONG).show();

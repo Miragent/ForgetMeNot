@@ -2,7 +2,8 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true">
+    android:fillViewport="true"
+    android:background="#eeeeed">
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
@@ -13,11 +14,14 @@
     tools:context="com.zerostar.forgetmenotnext.activities.MenuSensore">
 
     <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:id="@+id/img_tutorial_luce"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:background="@android:color/transparent"
+        android:src="@drawable/img_help_luce"
+        android:layout_marginTop="16dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -27,7 +31,8 @@
         android:id="@+id/tutorial_luce"
         android:layout_below="@+id/img_tutorial_luce"
         android:layout_centerHorizontal="true"
-        android:textAlignment="center" />
+        android:textAlignment="center"
+        android:layout_marginTop="32dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -53,9 +58,11 @@
     <ImageButton
         android:layout_width="64dp"
         android:layout_height="64dp"
-        android:id="@+id/imageButton"
+        android:id="@+id/btn_luce_fatto"
         android:layout_below="@+id/txt_intensita_luce"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="32dp" />
+        android:layout_marginTop="32dp"
+        android:src="@drawable/btn_fatto_no_sfondo"
+        android:background="@android:color/transparent" />
 </RelativeLayout>
 </ScrollView>

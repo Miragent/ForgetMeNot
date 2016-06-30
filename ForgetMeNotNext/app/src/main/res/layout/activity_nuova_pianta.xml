@@ -3,7 +3,8 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true">
+    android:fillViewport="true"
+    android:background="#eeeeed">
 
         <RelativeLayout
             android:orientation="vertical"
@@ -19,7 +20,9 @@
                 android:layout_alignParentTop="true"
                 android:layout_alignParentStart="true"
                 android:layout_marginLeft="64dp"
-                android:layout_marginTop="64dp" />
+                android:layout_marginTop="64dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/img_foto1" />
 
             <EditText
                 android:layout_width="160dp"
@@ -37,7 +40,9 @@
                 android:layout_marginStart="16dp"
                 android:layout_below="@+id/txt_nome_pianta"
                 android:layout_alignStart="@+id/img_foto_pianta"
-                android:layout_marginTop="48dp" />
+                android:layout_marginTop="48dp"
+                android:background="@drawable/btn_luce_no_sfondo"
+                android:src="@android:color/transparent" />
 
             <TextView
                 android:layout_width="128dp"
@@ -57,7 +62,9 @@
                 android:id="@+id/btn_fatto"
                 android:layout_marginTop="48dp"
                 android:layout_below="@+id/btn_luce"
-                android:layout_toStartOf="@+id/label_posto" />
+                android:layout_toStartOf="@+id/label_posto"
+                android:src="@drawable/btn_fatto_no_sfondo"
+                android:background="@android:color/transparent" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -70,7 +77,8 @@
                 android:layout_marginLeft="48dp"
                 android:layout_marginTop="8dp"
                 android:textSize="12dp"
-                android:layout_marginRight="48dp" />
+                android:layout_marginRight="48dp"
+                android:layout_marginBottom="8dp" />
 
             <ImageButton
                 android:layout_width="48dp"
@@ -78,7 +86,9 @@
                 android:id="@+id/btn_camera"
                 android:layout_below="@+id/l_scelta_foto"
                 android:layout_alignStart="@+id/l_scelta_foto"
-                android:layout_marginLeft="8dp" />
+                android:layout_marginLeft="8dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/btn_scatta_foto" />
 
             <ImageButton
                 android:layout_width="48dp"
@@ -86,7 +96,9 @@
                 android:id="@+id/btn_file"
                 android:layout_below="@+id/l_scelta_foto"
                 android:layout_toEndOf="@+id/btn_camera"
-                android:layout_marginLeft="8dp" />
+                android:layout_marginLeft="8dp"
+                android:src="@drawable/btn_galleria"
+                android:background="@android:color/transparent" />
 
             <TextView
                 android:layout_width="wrap_content"

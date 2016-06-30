@@ -3,55 +3,51 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical"
-    android:padding="10dip" >
-
-    <TextView
-        android:id="@+id/l_username"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Username"
-        android:layout_marginTop="120dp" />
+    android:padding="10dip"
+    android:background="@drawable/splash_rescaled">
 
     <EditText
         android:id="@+id/txt_username"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/l_username"
-        android:inputType="text" />
-
-    <TextView
-        android:id="@+id/l_password"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/txt_username"
-        android:text="Password" />
+        android:layout_width="192dp"
+        android:layout_height="36dp"
+        android:inputType="text"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="128dp"
+        android:background="@android:color/white"
+        android:hint="Nome Utente" />
 
     <EditText
         android:id="@+id/txt_password"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/l_password"
-        android:inputType="textPassword" />
-
-    <TextView
-        android:id="@+id/l_mail"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/txt_password"
-        android:text="Indirizzo e-mail" />
+        android:layout_width="192dp"
+        android:layout_height="36dp"
+        android:inputType="textPassword"
+        android:layout_below="@+id/txt_username"
+        android:layout_alignStart="@+id/txt_username"
+        android:layout_marginTop="32dp"
+        android:background="@android:color/white"
+        android:hint="Password" />
 
     <EditText
         android:id="@+id/txt_mail"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/l_mail"
-        android:inputType="text" />
+        android:layout_width="192dp"
+        android:layout_height="36dp"
+        android:inputType="text"
+        android:layout_below="@+id/txt_password"
+        android:layout_alignStart="@+id/txt_password"
+        android:layout_marginTop="32dp"
+        android:background="@android:color/white"
+        android:hint="Email" />
 
     <Button
         android:id="@+id/btn_signup"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="128dp"
+        android:layout_height="36dp"
+        android:text="Iscriviti"
         android:layout_below="@+id/txt_mail"
-        android:text="Iscriviti" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="64dp"
+        android:background="#a4c136"
+        android:textColor="@android:color/white" />
 
 </RelativeLayout>

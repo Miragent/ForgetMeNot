@@ -1,25 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#eeeeed">
+<RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
     <ImageButton
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="192dp"
+        android:layout_height="144dp"
         android:id="@+id/btn_giardino"
-        android:layout_weight="1" />
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="48dp" />
 
     <ImageButton
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="192dp"
+        android:layout_height="144dp"
         android:id="@+id/btn_DB"
         android:layout_gravity="center_vertical"
-        android:layout_weight="1" />
+        android:layout_below="@+id/btn_giardino"
+        android:layout_alignStart="@+id/btn_giardino"
+        android:layout_marginTop="16dp" />
 
     <ImageButton
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="192dp"
+        android:layout_height="144dp"
         android:id="@+id/btn_logout"
-        android:layout_weight="1.2" />
-</LinearLayout>
+        android:layout_below="@+id/btn_DB"
+        android:layout_alignStart="@+id/btn_DB"
+        android:layout_marginTop="16dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/btn_logout_rounded" />
+</RelativeLayout>
+</ScrollView>

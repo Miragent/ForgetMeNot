@@ -42,7 +42,7 @@ public class MenuSensore extends Activity implements SensorEventListener{
         intensità_luce = (TextView) findViewById(R.id.txt_intensita_luce);
         luce_ok = (TextView) findViewById(R.id.txt_luce_ok);
 
-        btn_finito_luce = (ImageButton) findViewById( (R.id.imageButton));
+        btn_finito_luce = (ImageButton) findViewById( (R.id.btn_luce_fatto));
         btn_finito_luce.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

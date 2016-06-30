@@ -49,7 +49,7 @@ public class NuovaPianta extends Activity {
     private ImageButton btn_sensore_luce;
     private ImageButton btn_fatto;
     private boolean is_luce_ok = false;
-    private boolean is_notifiche_ok = false;
+    //private boolean is_notifiche_ok = false;
 
     private TextView txt_posto;
     private EditText txt_my_nome;

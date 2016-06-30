@@ -9,7 +9,8 @@
     tools:context="com.zerostar.forgetmenotnext.activities.DataBase"
     android:orientation="vertical"
     android:focusable="false"
-    android:focusableInTouchMode="false">
+    android:focusableInTouchMode="false"
+    android:background="#eeeeed">
 
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
@@ -37,14 +38,19 @@
             android:layout_height="64dp"
             android:id="@+id/btn_cercaDB"
             android:layout_alignTop="@+id/txt_cercaPianta"
-            android:layout_toEndOf="@+id/txt_cercaPianta" />
+            android:layout_toEndOf="@+id/txt_cercaPianta"
+            android:src="@drawable/btn_cerca_no_sfondo"
+            android:background="@android:color/transparent"
+            android:layout_marginLeft="8dp" />
 
         <ImageButton
             android:layout_width="64dp"
             android:layout_height="64dp"
             android:id="@+id/btn_query_opt"
             android:layout_alignTop="@+id/btn_cercaDB"
-            android:layout_alignParentEnd="true" />
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/btn_filtri"
+            android:background="@android:color/transparent" />
     </RelativeLayout></ScrollView>
 
     <ListView

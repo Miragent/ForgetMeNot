@@ -3,48 +3,60 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="10dip">
-
-    <TextView
-        android:id="@+id/l_username"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Username"
-        android:layout_marginTop="120dp" />
+    android:padding="10dip"
+    android:background="@drawable/splash_rescaled">
 
     <EditText
         android:id="@+id/txt_username"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/l_username"
-        android:inputType="text" />
+        android:layout_width="192dp"
+        android:layout_height="36dp"
+        android:inputType="text"
+        android:background="@android:color/white"
+        android:layout_below="@+id/img_title2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="64dp"
+        android:hint="Nome Utente" />
 
     <EditText
         android:id="@+id/txt_password"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/l_password"
-        android:inputType="textPassword" />
+        android:layout_width="192dp"
+        android:layout_height="36dp"
+        android:inputType="textPassword"
+        android:background="@android:color/white"
+        android:layout_below="@+id/txt_username"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:hint="Password" />
 
     <Button
         android:id="@+id/btn_login"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="128dp"
+        android:layout_height="36dp"
+        android:text="Accedi"
+        android:background="@android:color/white"
         android:layout_below="@+id/txt_password"
-        android:text="Accedi" />
-
-    <TextView
-        android:id="@+id/l_password"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/txt_username"
-        android:text="Password" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:textColor="@android:color/darker_gray" />
 
     <Button
         android:id="@+id/btn_signup"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="128dp"
+        android:layout_height="36dp"
+        android:text="Iscriviti"
+        android:background="#a4c136"
         android:layout_below="@+id/btn_login"
-        android:text="Iscriviti" />
+        android:layout_centerHorizontal="true"
+        android:textColor="@android:color/white"
+        android:layout_marginTop="48dp" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/img_title2"
+        android:src="@drawable/forget_me_not"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="128dp" />
 
 </RelativeLayout>
